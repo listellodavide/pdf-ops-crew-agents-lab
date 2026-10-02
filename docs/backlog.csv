@@ -1,0 +1,125 @@
+ID,Work Item Type,Title 1,Title 2,Title 3,Description,Acceptance Criteria,Original Estimate,Tags
+,Epic,"E1 Corpus, snapshot and golden set",,,"Real, published PDFs flow through Phase 1 and 2a into a Parquet snapshot that every team can load, with golden questions written and checked by a person.",,,ai-memory-workshop
+,User Story,,"US 1.1 As a trainer, I want a corpus of real automotive and sustainability PDFs, so that participants work on documents with the same noise and repetition as Adobe's inbox.",,"As a trainer, I want a corpus of real automotive and sustainability PDFs, so that participants work on documents with the same noise and repetition as Adobe's inbox.",13+ PDFs from official sources listed in data/manifest.csv; SHA-256 pinned; nothing generated; copyrighted files never committed.,,ai-memory-workshop
+,Task,,,"1.1.1 Shortlist recall reports, service bulletins, two years of one ESG report, one owner's manual",Owner: Trainer,,3,ai-memory-workshop; Trainer
+,Task,,,1.1.2 Run data/fetch_corpus.py --pin and commit only the manifest,Owner: Trainer,,1,ai-memory-workshop; Trainer
+,Task,,,1.1.3 Check licence and terms of each source; note download-only documents,Owner: Trainer,,2,ai-memory-workshop; Trainer
+,Task,,,1.1.4 Add 2-3 documents from Adobe's own inbox if Adobe provides anonymised ones,Owner: Adobe coordinator,,2,ai-memory-workshop; Adobe coordinator
+,Task,,,1.1.5 Re-run the fetcher the day before each group; handle [CHANGED] documents,Owner: Co-trainer,,1,ai-memory-workshop; Co-trainer
+,User Story,,"US 1.2 As a participant, I want the PDFs already extracted to text and layout, so that the labs start from memory design, not from parsing.",,"As a participant, I want the PDFs already extracted to text and layout, so that the labs start from memory design, not from parsing.","pdf-inbox-ingestion/ contains .txt, .layout.json, .metadata.json for every PDF; OCR pages flagged; no WARN line about missing text.",,ai-memory-workshop
+,Task,,,1.2.1 Run pdf-compress-extractor.py on the corpus with OCR auto,Owner: Trainer,,1,ai-memory-workshop; Trainer
+,Task,,,1.2.2 Review metadata.json warnings and OCR quality for scanned pages,Owner: Trainer,,2,ai-memory-workshop; Trainer
+,Task,,,1.2.3 Check repeated headers/footers removal on the two biggest reports,Owner: Co-trainer,,1,ai-memory-workshop; Co-trainer
+,Task,,,"1.2.4 Record page counts, sizes and compression ratios for the slides",Owner: Co-trainer,,1,ai-memory-workshop; Co-trainer
+,Task,,,1.2.5 Zip the Phase 1 output as a fallback download for teams,Owner: Trainer,,1,ai-memory-workshop; Trainer
+,User Story,,"US 1.3 As a participant, I want a Parquet embedding snapshot built with the same model the cloud uses, so that my queries and the stored vectors are in one vector space.",,"As a participant, I want a Parquet embedding snapshot built with the same model the cloud uses, so that my queries and the stored vectors are in one vector space.",embeddings/foundry-te3s/*.parquet built with the Foundry embedding deployment; model and source hash in file metadata; e5base snapshot built as an offline alternative.,,ai-memory-workshop
+,Task,,,1.3.1 Build the snapshot with --model foundry-te3s,Owner: Trainer,,1,ai-memory-workshop; Trainer
+,Task,,,1.3.2 Build the e5base snapshot for the offline comparison,Owner: Trainer,,1,ai-memory-workshop; Trainer
+,Task,,,1.3.3 Measure tokens and cost of the embedding run; put it on the cost slide,Owner: Trainer,,1,ai-memory-workshop; Trainer
+,Task,,,1.3.4 Verify skip-if-unchanged by re-running the builder,Owner: Co-trainer,,0.5,ai-memory-workshop; Co-trainer
+,Task,,,1.3.5 Publish the snapshot to the shared storage the teams download from,Owner: Azure admin,,1,ai-memory-workshop; Azure admin
+,User Story,,"US 1.4 As a trainer, I want 20-30 golden questions with checked answers, so that every architecture is scored on the same ground truth.",,"As a trainer, I want 20-30 golden questions with checked answers, so that every architecture is scored on the same ground truth.","data/golden.jsonl with fact, recent, entity and multi-hop questions; each answer checked by a person against the cited page; at least 4 'latest' questions spanning the two ESG years.",,ai-memory-workshop
+,Task,,,1.4.1 Draft 30 questions across the four types from the real documents,Owner: Trainer,,4,ai-memory-workshop; Trainer
+,Task,,,1.4.2 Verify every expected answer and document against the page,Owner: Co-trainer,,3,ai-memory-workshop; Co-trainer
+,Task,,,1.4.3 Add 3 multi-hop questions (recall -> model -> part) for Lab 2 Block 3,Owner: Trainer,,2,ai-memory-workshop; Trainer
+,Task,,,1.4.4 Run evaluate.py with the reference to get the baseline scoreboard,Owner: Trainer,,1,ai-memory-workshop; Trainer
+,Task,,,1.4.5 Review the question list with Adobe for domain relevance,Owner: Adobe coordinator,,1,ai-memory-workshop; Adobe coordinator
+,User Story,,"US 1.5 As a trainer, I want the reference implementation and tests to pass on the real corpus, so that no lab fails on the day for reasons unrelated to the exercise.",,"As a trainer, I want the reference implementation and tests to pass on the real corpus, so that no lab fails on the day for reasons unrelated to the exercise.",PDFMEM_SOLUTIONS=1 pytest green; every block's CLI run end to end on Azure with the real corpus; timings recorded per block.,,ai-memory-workshop
+,Task,,,1.5.1 Dry run all six blocks on Azure with the reference (checkpoint upto 2.3),Owner: Trainer,,4,ai-memory-workshop; Trainer
+,Task,,,1.5.2 Dry run the same with the simulator backend (contingency),Owner: Co-trainer,,1,ai-memory-workshop; Co-trainer
+,Task,,,1.5.3 Time Part A and Part B of each block with a colleague who did not write the code,Owner: Co-trainer,,3,ai-memory-workshop; Co-trainer
+,Task,,,1.5.4 Fix or simplify any TODO that takes more than 30 minutes,Owner: Trainer,,3,ai-memory-workshop; Trainer
+,Task,,,1.5.5 Tag the repository version used for each group,Owner: Trainer,,0.5,ai-memory-workshop; Trainer
+,Epic,E2 Lab 1: from Parquet to resident memory,,,"Participants turn the snapshot into resident semantic memory and fact memory in Azure AI Search, and measure size, recall quality, latency and tokens for each design.",,,ai-memory-workshop
+,User Story,,"US 2.1 As a participant, I want to optimize the snapshot before loading it, so that the resident memory holds no fragments or duplicates.",,"As a participant, I want to optimize the snapshot before loading it, so that the resident memory holds no fragments or duplicates.",TODO 1.1-a green; optimize report shows short/exact/near counts; teams can explain the threshold choice.,,ai-memory-workshop
+,Task,,,"2.1.1 Write the Block 1.1 handout (Part A, Part B, notes)",Owner: Trainer,,2,ai-memory-workshop; Trainer
+,Task,,,2.1.2 Prepare the slide on duplicates taking top-k slots,Owner: Trainer,,1,ai-memory-workshop; Trainer
+,Task,,,2.1.3 Pick two threshold values that visibly change the result on the corpus,Owner: Co-trainer,,1,ai-memory-workshop; Co-trainer
+,Task,,,2.1.4 Prepare the debrief questions on order and threshold,Owner: Trainer,,0.5,ai-memory-workshop; Trainer
+,Task,,,2.1.5 Check test_lab1_block1 timings on a Windows and a Mac laptop,Owner: Co-trainer,,1,ai-memory-workshop; Co-trainer
+,User Story,,"US 2.2 As a participant, I want to compare uncompressed, scalar and binary quantized indexes, so that I can choose vector compression with numbers.",,"As a participant, I want to compare uncompressed, scalar and binary quantized indexes, so that I can choose vector compression with numbers.","Three indexes per team created and measured (storage, vector index size, hit@3); unused variants deleted with cleanup --keep.",,ai-memory-workshop
+,Task,,,2.2.1 Confirm AI Search tier and index limits for 4 teams x 4 indexes,Owner: Azure admin,,1,ai-memory-workshop; Azure admin
+,Task,,,2.2.2 Explain rescoring and preserveOriginals on one slide,Owner: Trainer,,1,ai-memory-workshop; Trainer
+,Task,,,2.2.3 Record the reference numbers for the three variants,Owner: Trainer,,1,ai-memory-workshop; Trainer
+,Task,,,2.2.4 Prepare the 'memory vs disk' discussion,Owner: Trainer,,0.5,ai-memory-workshop; Trainer
+,Task,,,2.2.5 Script the cleanup between Part B and Block 1.2,Owner: Co-trainer,,0.5,ai-memory-workshop; Co-trainer
+,User Story,,"US 2.3 As a participant, I want to query the memory in keyword, vector, hybrid, semantic and fresh modes, so that I see which questions each mode answers.",,"As a participant, I want to query the memory in keyword, vector, hybrid, semantic and fresh modes, so that I see which questions each mode answers.",TODO 1.2-a and 1.2-b green; five scoreboard rows per team; every team names one question each mode misses.,,ai-memory-workshop
+,Task,,,2.3.1 Write the Block 1.2 handout and mode comparison table,Owner: Trainer,,2,ai-memory-workshop; Trainer
+,Task,,,2.3.2 Check semantic ranker availability and quota on the Search tier,Owner: Azure admin,,0.5,ai-memory-workshop; Azure admin
+,Task,,,2.3.3 Prepare the 'tire' noise demo with and without a document filter,Owner: Trainer,,1,ai-memory-workshop; Trainer
+,Task,,,2.3.4 Tune the freshness and tag boosts on the real corpus,Owner: Trainer,,2,ai-memory-workshop; Trainer
+,Task,,,"2.3.5 Prepare the permission-aware stretch (access field, Entra groups)",Owner: Co-trainer,,2,ai-memory-workshop; Co-trainer
+,User Story,,"US 2.4 As a participant, I want facts with versions instead of chunks for exact questions, so that the agent reads one line with provenance and the newest value wins.",,"As a participant, I want facts with versions instead of chunks for exact questions, so that the agent reads one line with provenance and the newest value wins.",TODO 1.3-a and 1.3-b green; facts extracted from both ESG years; at least one UPDATE with correct history.,,ai-memory-workshop
+,Task,,,2.4.1 Write the Block 1.3 handout,Owner: Trainer,,2,ai-memory-workshop; Trainer
+,Task,,,2.4.2 Run model-based extraction on the ESG factbooks and review 20 facts by hand,Owner: Trainer,,2,ai-memory-workshop; Trainer
+,Task,,,"2.4.3 Prepare the rules-vs-model comparison (count, precision, cost)",Owner: Co-trainer,,1,ai-memory-workshop; Co-trainer
+,Task,,,2.4.4 Prepare the entity-resolution stretch example,Owner: Trainer,,1,ai-memory-workshop; Trainer
+,Task,,,2.4.5 Estimate model tokens for extraction per team; check TPM quota,Owner: Azure admin,,1,ai-memory-workshop; Azure admin
+,User Story,,"US 2.5 As a team, I want a scoreboard and a pros/cons table after Lab 1, so that we compare designs with our own numbers rather than vendor claims.",,"As a team, I want a scoreboard and a pros/cons table after Lab 1, so that we compare designs with our own numbers rather than vendor claims.",scoreboard/<team>.csv has rows for every variant and mode; notes table filled for 1.1-1.3; 45-minute debrief held.,,ai-memory-workshop
+,Task,,,2.5.1 Build the day-1 scoreboard view (merge team CSVs),Owner: Co-trainer,,1,ai-memory-workshop; Co-trainer
+,Task,,,2.5.2 Prepare the debrief slide template,Owner: Trainer,,1,ai-memory-workshop; Trainer
+,Task,,,2.5.3 Collect one insight per team for the Day 2 recap,Owner: Co-trainer,,0.5,ai-memory-workshop; Co-trainer
+,Task,,,2.5.4 Compare team numbers with the article's claims on one slide,Owner: Trainer,,1,ai-memory-workshop; Trainer
+,Task,,,2.5.5 Award the day's points,Owner: Trainer,,0.5,ai-memory-workshop; Trainer
+,Epic,E3 Lab 2: agents that remember,,,"Participants give an agent short-term, episodic, procedural and graph memory, route questions across memories with governance, and expose the memory to Foundry Agent Service and other frameworks.",,,ai-memory-workshop
+,User Story,,"US 3.1 As a participant, I want an observation log with a token budget, so that long sessions over big PDFs stay small and stable.",,"As a participant, I want an observation log with a token budget, so that long sessions over big PDFs stay small and stable.",TODO 2.1-a and 2.1-b green; compression ratio recorded; context never exceeds the budget.,,ai-memory-workshop
+,Task,,,3.1.1 Write the Block 2.1 handout,Owner: Trainer,,2,ai-memory-workshop; Trainer
+,Task,,,3.1.2 Prepare the observer/reflector diagram slide,Owner: Trainer,,1,ai-memory-workshop; Trainer
+,Task,,,3.1.3 Record reference ratios for the rule-based and the model-based observer,Owner: Co-trainer,,1,ai-memory-workshop; Co-trainer
+,Task,,,3.1.4 Prepare the budget 400 vs 150 discussion,Owner: Trainer,,0.5,ai-memory-workshop; Trainer
+,Task,,,3.1.5 Check model latency for per-event observation calls,Owner: Co-trainer,,0.5,ai-memory-workshop; Co-trainer
+,User Story,,"US 3.2 As a participant, I want to compare my log with the Foundry memory store, so that I know what managed memory gives and what it hides.",,"As a participant, I want to compare my log with the Foundry memory store, so that I know what managed memory gives and what it hides.",Memory store created per team; chat summary and user profile memories visible; teams list one thing each approach kept that the other missed.,,ai-memory-workshop
+,Task,,,3.2.1 Confirm memory store preview availability in the region and subscription,Owner: Azure admin,,1,ai-memory-workshop; Azure admin
+,Task,,,3.2.2 Create one store per team in advance (chat and embedding models set),Owner: Azure admin,,1,ai-memory-workshop; Azure admin
+,Task,,,3.2.3 Run the --foundry path once per team in the dry run,Owner: Co-trainer,,1,ai-memory-workshop; Co-trainer
+,Task,,,3.2.4 Prepare the managed-vs-own comparison table,Owner: Trainer,,1,ai-memory-workshop; Trainer
+,Task,,,3.2.5 Plan the fallback if the preview is unavailable (simulator),Owner: Trainer,,0.5,ai-memory-workshop; Trainer
+,User Story,,"US 3.3 As a participant, I want the agent to learn lessons from failed episodes, so that it improves without code or prompt changes.",,"As a participant, I want the agent to learn lessons from failed episodes, so that it improves without code or prompt changes.",TODO 2.2-a and 2.2-b green; pass 2 success rate higher than pass 1 on the real golden set; lessons visible in the index and optionally in Foundry.,,ai-memory-workshop
+,Task,,,3.3.1 Write the Block 2.2 handout,Owner: Trainer,,2,ai-memory-workshop; Trainer
+,Task,,,"3.3.2 Pick recall settings (mode, k) where pass 1 fails on 'latest' questions",Owner: Trainer,,1,ai-memory-workshop; Trainer
+,Task,,,3.3.3 Prepare the LangGraph diagram and state explanation,Owner: Trainer,,1,ai-memory-workshop; Trainer
+,Task,,,3.3.4 Prepare the over-learning counter-example,Owner: Co-trainer,,1,ai-memory-workshop; Co-trainer
+,Task,,,3.3.5 Prepare the human-in-the-loop stretch with interrupt,Owner: Trainer,,2,ai-memory-workshop; Trainer
+,User Story,,"US 3.4 As a participant, I want graph memory and a router across memories, so that multi-hop questions get answered and simple ones stay cheap.",,"As a participant, I want graph memory and a router across memories, so that multi-hop questions get answered and simple ones stay cheap.",TODO 2.3-a and 2.3-b green; recall -> model -> part path found on the real corpus; teams compare hybrid vs semantic-only on five questions.,,ai-memory-workshop
+,Task,,,3.4.1 Write the Block 2.3 handout,Owner: Trainer,,2,ai-memory-workshop; Trainer
+,Task,,,3.4.2 Check that the real corpus yields at least one two-hop path,Owner: Trainer,,1,ai-memory-workshop; Trainer
+,Task,,,"3.4.3 Prepare the 'when to use a graph database' slide (Cosmos DB Gremlin, Neo4j)",Owner: Trainer,,1,ai-memory-workshop; Trainer
+,Task,,,"3.4.4 Prepare the governance demo: forget, audit, what remains elsewhere",Owner: Co-trainer,,1,ai-memory-workshop; Co-trainer
+,Task,,,3.4.5 Verify the Foundry prompt agent with the function tool in the dry run,Owner: Trainer,,1,ai-memory-workshop; Trainer
+,User Story,,"US 3.5 As an architect, I want the same memory behind Foundry Agent Service, LangGraph, Semantic Kernel and AutoGen, so that the framework choice is separate from the memory design.",,"As an architect, I want the same memory behind Foundry Agent Service, LangGraph, Semantic Kernel and AutoGen, so that the framework choice is separate from the memory design.",Adapters run (tests green with optional packages); each team tries one framework and notes what it gives and costs; final recommendation section filled.,,ai-memory-workshop
+,Task,,,3.5.1 Verify requirements-frameworks.txt installs on Windows and macOS with Python 3.14,Owner: Co-trainer,,1,ai-memory-workshop; Co-trainer
+,Task,,,3.5.2 Prepare the four-framework comparison slide,Owner: Trainer,,1,ai-memory-workshop; Trainer
+,Task,,,3.5.3 Prepare a Semantic Kernel run against the Foundry deployment (Entra token),Owner: Trainer,,1,ai-memory-workshop; Trainer
+,Task,,,3.5.4 Prepare an AutoGen AssistantAgent run with the tool,Owner: Co-trainer,,1,ai-memory-workshop; Co-trainer
+,Task,,,3.5.5 Collect each team's recommendation for the closing session,Owner: Trainer,,0.5,ai-memory-workshop; Trainer
+,Epic,E4 Delivery: 2 days x 2 groups,,,"The workshop runs twice with up to 16 people per group, remote, on time, with working access, clean environments between groups, and measured feedback.",,,ai-memory-workshop
+,User Story,,"US 4.1 As a participant, I want the theory sessions to explain memory architectures and their trade-offs, so that the labs make sense.",,"As a participant, I want the theory sessions to explain memory architectures and their trade-offs, so that the labs make sense.","30-slide deck reviewed; each architecture slide has strengths, weaknesses and when not to use; article claims cited as claims.",,ai-memory-workshop
+,Task,,,4.1.1 Build the 30-slide deck,Owner: Trainer,,6,ai-memory-workshop; Trainer
+,Task,,,4.1.2 Review the deck with a second Microsoft CSA,Owner: Co-trainer,,1,ai-memory-workshop; Co-trainer
+,Task,,,4.1.3 Add the team scoreboard and pros/cons template slides,Owner: Trainer,,1,ai-memory-workshop; Trainer
+,Task,,,4.1.4 Rehearse the 45-minute theory block for each day,Owner: Trainer,,2,ai-memory-workshop; Trainer
+,Task,,,4.1.5 Share the deck with Adobe one week before,Owner: Trainer,,0.5,ai-memory-workshop; Trainer
+,User Story,,"US 4.2 As Adobe, I want every participant's laptop and account ready before Day 1, so that no lab time is lost on setup.",,"As Adobe, I want every participant's laptop and account ready before Day 1, so that no lab time is lost on setup.",tools/setup_check.py all OK for every participant (offline + cloud); roles assigned to the Entra group; 30-minute setup clinic held.,,ai-memory-workshop
+,Task,,,4.2.1 Collect participant list and team assignment per group (max 16),Owner: Adobe coordinator,,1,ai-memory-workshop; Adobe coordinator
+,Task,,,4.2.2 Create the Entra group and assign Foundry User and Search roles,Owner: Azure admin,,2,ai-memory-workshop; Azure admin
+,Task,,,"4.2.3 Send setup instructions (Windows 11 and macOS Tahoe, Python 3.14)",Owner: Trainer,,1,ai-memory-workshop; Trainer
+,Task,,,4.2.4 Run the setup clinic and collect setup_check outputs,Owner: Co-trainer,,1.5,ai-memory-workshop; Co-trainer
+,Task,,,4.2.5 Follow up on every FAIL line before Day 1,Owner: Co-trainer,,2,ai-memory-workshop; Co-trainer
+,User Story,,"US 4.3 As the trainer, I want quotas and costs sized for 16 people working at once, so that labs do not stall on HTTP 429 or tier limits.",,"As the trainer, I want quotas and costs sized for 16 people working at once, so that labs do not stall on HTTP 429 or tier limits.",Model and embedding TPM sized from dry-run token counts x 16; AI Search tier supports 4 teams x up to 4 indexes; cost estimate shared with Adobe.,,ai-memory-workshop
+,Task,,,4.3.1 Measure tokens per block in the dry run,Owner: Trainer,,1,ai-memory-workshop; Trainer
+,Task,,,4.3.2 Set deployment TPM and request quota increases if needed,Owner: Azure admin,,1,ai-memory-workshop; Azure admin
+,Task,,,4.3.3 Choose the AI Search tier (Basic vs S1) from the index count,Owner: Azure admin,,0.5,ai-memory-workshop; Azure admin
+,Task,,,4.3.4 Write the cost estimate per group,Owner: Trainer,,1,ai-memory-workshop; Trainer
+,Task,,,4.3.5 Set a budget alert on the resource group,Owner: Azure admin,,0.5,ai-memory-workshop; Azure admin
+,User Story,,"US 4.4 As the trainer, I want a clean environment for Group 2, so that teams do not see Group 1's memories and indexes.",,"As the trainer, I want a clean environment for Group 2, so that teams do not see Group 1's memories and indexes.",cleanup --all run for every Group 1 team; memory stores and agent versions removed; Group 2 team prefixes (g2-*) set; spot check shows zero leftover indexes.,,ai-memory-workshop
+,Task,,,4.4.1 Script cleanup for all teams of a group,Owner: Co-trainer,,1,ai-memory-workshop; Co-trainer
+,Task,,,4.4.2 Run the cleanup at the end of day 2,Owner: Co-trainer,,0.5,ai-memory-workshop; Co-trainer
+,Task,,,4.4.3 Delete leftover agent versions in Foundry,Owner: Azure admin,,0.5,ai-memory-workshop; Azure admin
+,Task,,,4.4.4 Reset scoreboards and notes for Group 2,Owner: Co-trainer,,0.5,ai-memory-workshop; Co-trainer
+,Task,,,4.4.5 Apply fixes found during Group 1 and re-tag the repository,Owner: Trainer,,2,ai-memory-workshop; Trainer
+,User Story,,"US 4.5 As Adobe, I want to measure what the participants learned and leave with a PoC backlog, so that the workshop leads to a decision.",,"As Adobe, I want to measure what the participants learned and leave with a PoC backlog, so that the workshop leads to a decision.",Feedback form completed by at least 80% of each group; scoreboards and notes archived; a PoC backlog with success criteria agreed for the most promising use case.,,ai-memory-workshop
+,Task,,,"4.5.1 Prepare the feedback form (content, labs, pace, cloud setup)",Owner: Trainer,,1,ai-memory-workshop; Trainer
+,Task,,,4.5.2 Run the architecture review and PoC definition session,Owner: Trainer,,1.5,ai-memory-workshop; Trainer
+,Task,,,4.5.3 Archive team scoreboards and notes,Owner: Co-trainer,,0.5,ai-memory-workshop; Co-trainer
+,Task,,,4.5.4 Write the workshop report for Adobe and Microsoft,Owner: Trainer,,3,ai-memory-workshop; Trainer
+,Task,,,4.5.5 Agree on the next step and the six-month update cadence,Owner: Adobe coordinator,,1,ai-memory-workshop; Adobe coordinator

@@ -1,0 +1,9 @@
+{
+  "schema": "pdf-ingestion-metadata-v1",
+  "source": {
+    "file": "sustainability-report-2025.pdf",
+    "pdf_metadata": {
+      "creationDate": "D:20260312000000"
+    }
+  }
+}

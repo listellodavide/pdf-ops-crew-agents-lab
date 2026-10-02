@@ -1,0 +1,9 @@
+{
+  "schema": "pdf-ingestion-metadata-v1",
+  "source": {
+    "file": "owner-manual-lt300.pdf",
+    "pdf_metadata": {
+      "creationDate": "D:20230105000000"
+    }
+  }
+}

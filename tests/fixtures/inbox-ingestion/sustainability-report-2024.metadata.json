@@ -1,0 +1,9 @@
+{
+  "schema": "pdf-ingestion-metadata-v1",
+  "source": {
+    "file": "sustainability-report-2024.pdf",
+    "pdf_metadata": {
+      "creationDate": "D:20250314000000"
+    }
+  }
+}

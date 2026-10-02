@@ -1,0 +1,14 @@
+[[page 1]]
+Heavy Truck Spare Parts Catalog - Engine group 01
+
+|Part No.|Description|Qty|Fits|
+|---|---|---|---|
+|74200001|Cylinder head gasket|1|FH16 / D13|
+|74200002|Engine oil filter|1|FH16 / D13|
+|88-2214|Caliper bolt kit front axle|2|LT-300|
+|74200010|Tire pressure sensor|4|FH16|
+
+[[page 2]]
+Torque the cylinder head bolts in three stages: 60 Nm, 120 Nm, then 90 degrees.
+Replace the cylinder head gasket 74200001 whenever the head is removed.
+Check tire pressure on the steer axle after any front-end work.

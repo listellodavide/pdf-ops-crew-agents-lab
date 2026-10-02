@@ -1,0 +1,38 @@
+{
+  "foundry-te3s": {
+    "provider": "foundry",
+    "model_name": "text-embedding-3-small"
+  },
+  "hash512": {
+    "provider": "hashing",
+    "model_name": "hashing:512"
+  },
+  "e5small": {
+    "model_name": "intfloat/multilingual-e5-small",
+    "query_prefix": "query: ",
+    "passage_prefix": "passage: "
+  },
+  "e5base": {
+    "model_name": "intfloat/multilingual-e5-base",
+    "query_prefix": "query: ",
+    "passage_prefix": "passage: "
+  },
+  "e5large": {
+    "model_name": "intfloat/multilingual-e5-large",
+    "query_prefix": "query: ",
+    "passage_prefix": "passage: "
+  },
+  "paraphrase": {
+    "model_name": "sentence-transformers/paraphrase-multilingual-mpnet-base-v2"
+  },
+  "gte": {
+    "model_name": "Alibaba-NLP/gte-multilingual-base",
+    "model_kwargs": {
+      "trust_remote_code": true
+    }
+  },
+  "qwen": {
+    "model_name": "Qwen/Qwen3-Embedding-0.6B",
+    "query_prefix": "Instruct: Given a search query, retrieve relevant passages that answer the query\nQuery: "
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "schema": "pdf-ingestion-metadata-v1",
+  "source": {
+    "file": "recall-23V083-brake-caliper.pdf",
+    "pdf_metadata": {
+      "creationDate": "D:20230220000000"
+    }
+  }
+}

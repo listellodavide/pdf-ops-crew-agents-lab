@@ -1,0 +1,28 @@
+# Python 3.14 on Windows 11 (x64) and macOS Tahoe (Apple silicon).
+# Every package below publishes Python 3.14 wheels for both platforms: no compiler needed.
+
+# Phase 1-2a: local extraction and the Parquet embedding snapshot
+PyMuPDF>=1.26,<2.0
+polars>=1.30,<2.0
+pyarrow>=16.0               # 16+ reads ORC on Windows
+fastexcel>=0.12
+numpy>=2.3,<3.0
+
+# Phase 2a with a local model (e5). Not needed when the snapshot uses Foundry embeddings (foundry-te3s)
+sentence-transformers>=5.0,<7.0
+transformers>=4.50
+torch>=2.6                  # CPU wheel on Windows; Metal (mps) on Apple silicon
+
+# Phase 3: resident memory in Microsoft Foundry and Azure AI Search (Entra ID, no keys)
+azure-ai-projects>=2.7,<3.0  # Foundry projects, agents, memory stores (preview)
+azure-search-documents>=12.0,<13.0
+azure-identity>=1.25
+
+# Agents, models, configuration
+langgraph>=1.0,<2.0
+pydantic>=2.11,<3.0
+python-dotenv>=1.1
+
+# Tests and lint
+pytest>=8.4
+ruff>=0.13

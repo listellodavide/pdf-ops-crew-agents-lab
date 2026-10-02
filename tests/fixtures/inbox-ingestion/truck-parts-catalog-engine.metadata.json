@@ -1,0 +1,9 @@
+{
+  "schema": "pdf-ingestion-metadata-v1",
+  "source": {
+    "file": "truck-parts-catalog-engine.pdf",
+    "pdf_metadata": {
+      "creationDate": "D:20240502000000"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+file,url,category,publisher,access,sha256,notes
+nhtsa-rclrpt-23V083.pdf,https://static.nhtsa.gov/odi/rcl/2023/RCLRPT-23V083-9210.PDF,recall,NHTSA (manufacturer filing),public,,Part 573 Safety Recall Report
+nhtsa-rclrpt-23V111.pdf,https://static.nhtsa.gov/odi/rcl/2023/RCLRPT-23V111-1910.PDF,recall,NHTSA (manufacturer filing),public,,Part 573 Safety Recall Report
+nhtsa-rclrpt-23V590.pdf,https://static.nhtsa.gov/odi/rcl/2023/RCLRPT-23V590-5120.PDF,recall,NHTSA (manufacturer filing),public,,Part 573 Safety Recall Report
+nhtsa-rclrpt-23V663.pdf,https://static.nhtsa.gov/odi/rcl/2023/RCLRPT-23V663-3384.PDF,recall,NHTSA (manufacturer filing),public,,Part 573 Safety Recall Report
+nhtsa-rclrpt-23V794.pdf,https://static.nhtsa.gov/odi/rcl/2023/RCLRPT-23V794-5407.PDF,recall,NHTSA (manufacturer filing),public,,Part 573 Safety Recall Report
+nhtsa-rclrpt-22V448.pdf,https://static.nhtsa.gov/odi/rcl/2022/RCLRPT-22V448-8978.PDF,recall,NHTSA (manufacturer filing),public,,Part 573 Safety Recall Report
+nhtsa-tsb-MC-11016479.pdf,https://static.nhtsa.gov/odi/tsbs/2025/MC-11016479-0001.pdf,service-bulletin,NHTSA (manufacturer filing),dealer,,Technical Service Bulletin (fire truck)
+nhtsa-tsb-MC-10231577.pdf,https://static.nhtsa.gov/odi/tsbs/2023/MC-10231577-0002.pdf,service-bulletin,NHTSA (manufacturer filing),dealer,,Technical Service Bulletin (travel trailer)
+daimler-truck-esg-factbook-2024.pdf,https://www.daimlertruck.com/fileadmin/user_upload/documents/sustainability/daimler-truck-esg-factbook-fy-2024.pdf,sustainability,Daimler Truck,public,,Same report two years running: recency lab
+daimler-truck-esg-factbook-2025.pdf,https://www.daimlertruck.com/fileadmin/user_upload/documents/sustainability/Daimler_Truck_ESG_Factbook_FY_2025.pdf,sustainability,Daimler Truck,public,,Same report two years running: recency lab
+scania-environmental-performance-2024.pdf,https://www.scania.com/content/dam/group/sustainability/progress-and-documentation/environmental-performance/scania-environmental-performance-2024.pdf,sustainability,Scania,public,,Sustainability tables
+scania-annual-sustainability-report-2024.pdf,https://www.scania.com/content/dam/group/investor-relations/annual-review/download-full-report/scania-annual-and-sustainability-report-2024.pdf,sustainability,Scania,public,,Large report (many pages)
+tesla-model3-owners-manual-eu.pdf,https://www.tesla.com/ownersmanual/model3/en_eu/Owners_Manual.pdf,owner-manual,Tesla,public,,Copyright Tesla: download only; never commit

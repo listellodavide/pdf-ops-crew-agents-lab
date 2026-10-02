@@ -1,0 +1,21 @@
+[project]
+name = "pdf-ops-crew-agents-lab"
+version = "1.0.0"
+description = "Memory architectures for PDF agents on Microsoft Foundry: workshop labs"
+requires-python = ">=3.14"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q -p no:cacheprovider"
+filterwarnings = ["ignore::DeprecationWarning"]
+
+[tool.ruff]
+line-length = 140
+target-version = "py314"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "B", "UP", "I"]
+
+[tool.ruff.lint.per-file-ignores]
+# generated participant stubs: names used only by the removed solution code
+"pdfmem/*" = ["F401", "F821", "F841", "B007"]

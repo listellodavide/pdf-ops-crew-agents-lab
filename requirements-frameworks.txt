@@ -1,0 +1,4 @@
+# Optional, Lab 2 Block 3 Part B: the same memory behind Semantic Kernel and AutoGen
+semantic-kernel>=1.37,<2.0
+autogen-agentchat>=0.7,<0.8
+autogen-core>=0.7,<0.8

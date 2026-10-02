@@ -1,0 +1,6 @@
+{"id": "q1", "question": "What torque should the front brake caliper bolts have on the LT-300?", "expected_documents": ["recall-23V083-brake-caliper.pdf"], "expected_answer_contains": ["125 Nm"], "type": "fact"}
+{"id": "q2", "question": "What is the most recent scope 1 and 2 emissions reduction?", "expected_documents": ["sustainability-report-2025.pdf"], "expected_answer_contains": ["18 percent"], "type": "recent"}
+{"id": "q3", "question": "Which part number is the caliper bolt kit?", "expected_documents": ["truck-parts-catalog-engine.pdf", "recall-23V083-brake-caliper.pdf"], "expected_answer_contains": ["88-2214"], "type": "fact"}
+{"id": "q4", "question": "Which vehicles are affected by recall campaign 23V083?", "expected_documents": ["recall-23V083-brake-caliper.pdf"], "expected_answer_contains": ["LT-300"], "type": "entity"}
+{"id": "q5", "question": "How many tonnes of steel were recovered in the latest report?", "expected_documents": ["sustainability-report-2025.pdf"], "expected_answer_contains": ["2,400"], "type": "recent"}
+{"id": "q6", "question": "What is the cold tire pressure for the front axle of the LT-300?", "expected_documents": ["owner-manual-lt300.pdf"], "expected_answer_contains": ["3.1 bar"], "type": "fact"}

@@ -1,0 +1,13 @@
+[[page 1]]
+Part 573 Safety Recall Report 23V-083
+
+Manufacturer: Example Light Trucks LLC
+Recall campaign 23V083 affects light truck model LT-300, model years 2023 to 2025.
+Number of potentially involved vehicles: 4,812.
+
+[[page 2]]
+Description of defect: the front brake caliper mounting bolts may have been tightened to 95 Nm instead of the specified 125 Nm.
+A loose caliper can reduce braking performance and increase the risk of a crash.
+
+Remedy: dealers will re-torque both front caliper bolts to 125 Nm and replace the bolt kit 88-2214 if threads are damaged.
+Owner notification letters are expected to be mailed on 2023-04-10.

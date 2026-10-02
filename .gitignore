@@ -216,3 +216,14 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Workshop
+.env
+data/inbox/
+data/golden.jsonl
+pdf-inbox-ingestion/
+memory/
+scoreboard/
+pdfmem/*.mine
+*.parquet
+!tests/fixtures/**
